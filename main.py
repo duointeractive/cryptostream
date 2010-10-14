@@ -7,7 +7,10 @@ import base64
 import urllib
 
 
+# Encryption Key
 KEY = 'foobar'
+
+# Time for link to remain active.  Can be any amount of time.
 timedelta = datetime.timedelta(hours=4)
 
 def app(environ, start_response):

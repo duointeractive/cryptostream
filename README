@@ -1,0 +1,32 @@
+Required Libraries:
+
+Python Cryptography Toolkit
+> easy_install pycrypto
+
+Running:
+
+Launch the main:app using gunicorn
+
+> gunicorn main:app
+
+Using:
+
+Application does two things:
+
+1.  Checks a timestamp to make sure the link was recently given to the user.
+2.  Redirect user to a static URL without giving this URL to the user.
+
+To encrypt a url for cryptostream to decode:
+
+> from cryptostream.main import EncryptURL
+> EncryptURL("/foo/bar/")
+'path=SQkADU4QBx0%3D&ts=V11XVVFAVFlaVE9AUg%3D%3D'
+
+Then add this querystring to the url cryptostream is running on.
+
+Configure:
+
+There are two variable in main.py that control behavior:
+
+1. KEY = 'foobar'  # A Plain text encryption key
+2. timedelta = datetime.timedelta(hours=4)  # Maximum time the link will be alive.
