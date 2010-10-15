@@ -30,3 +30,22 @@ There are two variable in main.py that control behavior:
 
 1. KEY = 'foobar'  # A Plain text encryption key
 2. timedelta = datetime.timedelta(hours=4)  # Maximum time the link will be alive.
+
+Sample Nginx Server Config:
+
+server {
+	listen   80 default;
+	server_name  localhost;
+
+	access_log  /var/log/nginx/localhost.access.log;
+
+	# Serves up jpegs in my picture directory at root
+	location ~ \.(jpg|JPG)$ {
+		root   /home/dylan/Pictures;
+	}
+
+	# Gunicorn running the Cryptostream app
+        location / {
+                proxy_pass http://127.0.0.1:8000/;
+        }
+}
